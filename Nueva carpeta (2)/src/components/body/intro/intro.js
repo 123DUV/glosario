@@ -18,7 +18,7 @@ export default function Intro() {
                 <div className="container">
                     <h2>About Us</h2>
                     <h5>We are working on this project with the desire to improve, and we hope you enjoy this website</h5>
-                    <h2>Made by Duvan Bedoya and John Carrillo</h2>
+                    <h2></h2>
                 </div>
             </section>
 

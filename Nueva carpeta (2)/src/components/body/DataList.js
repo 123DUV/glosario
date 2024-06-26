@@ -2,23 +2,31 @@ import React, { useState } from 'react';
 import { data } from './data';
 import Card from './Card';
 import './DataList.css'; // Archivo CSS para estilos
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
 export const DataList = () => {
   const [selectedLetter, setSelectedLetter] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleLetterClick = (letter) => {
     setSelectedLetter(letter);
   };
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
+  const handleRecharge = () => {
+    setSelectedLetter(null);
+    setSearchTerm('');
+  };
 
+  const filteredData = data.filter((item) => {
+    const nameMatchesLetter = !selectedLetter || item.name.charAt(0).toUpperCase() === selectedLetter;
+    const nameMatchesSearch = searchTerm.trim() === '' || item.name.toLowerCase().includes(searchTerm.toLowerCase());
+    return nameMatchesLetter && nameMatchesSearch;
+  });
 
-  // Filtrar las definiciones que comienzan con la letra seleccionada
-  const filteredData = selectedLetter
-    ? data.filter(item => item.name.charAt(0).toUpperCase() === selectedLetter)
-    : data;
-
-  // Eliminar duplicados usando un conjunto (Set)
   const uniqueFilteredData = Array.from(new Set(filteredData.map(item => item.id)))
     .map(id => {
       return filteredData.find(item => item.id === id);
@@ -28,8 +36,6 @@ export const DataList = () => {
     <Card key={item.id} items={item} />
   ));
 
-  // Generar botones de A a Z
-
   const alphabetButtons = Array.from({ length: 26 }, (_, index) => (
     <button
       key={index}
@@ -38,24 +44,34 @@ export const DataList = () => {
     >
       {String.fromCharCode(65 + index)}
     </button>
-
   ));
-
 
   return (
     <div>
-      <Link to="/">
-        <button class="btn btn-dark " id='home'>Home</button>
-      </Link>
-      
+      <div className="fixed-search">
+        <input
+          className="form-control"
+          id='input'
+          type='search'
+          placeholder='Buscar'
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+      </div>
+
+      <div className="nav-buttons" >
+        <Link to="/">
+          <button className="btn btn-dark" id='h'>Home</button>
+        </Link>
         
-      
+      </div>
+      <div >
+      <button className="btn btn-dark" id='h' onClick={handleRecharge}>Recharge</button>
+      </div>
+
       <div className='data-list-container'>
-
         <div className='alphabet-buttons'>
-
           {alphabetButtons}
-
         </div>
         <div className='divCards'>
           {cards.length > 0 ? cards : <div className='no-data'>No hay definiciones para la letra seleccionada.</div>}
