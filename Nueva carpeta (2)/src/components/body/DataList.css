@@ -1,0 +1,61 @@
+/* DataList.css */
+#home{
+  width: 100%;
+}
+#init{
+  width: 100%;
+}
+.data-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.alphabet-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.alphabet-buttons button {
+  margin: 5px;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+}
+
+.alphabet-buttons button.active {
+  background-color: #ccc;
+}
+
+.divCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card2 {
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  margin: 10px;
+  padding: 10px;
+  width: 200px;
+}
+
+.no-data {
+  margin: 20px;
+  padding: 10px;
+  font-style: italic;
+  color: #888;
+}
+
+body {
+  background-image: url('../img/nismo.jpg'); /* Reemplaza 'ruta/a/tu/imagen.jpg' con la ruta a tu imagen */
+  background-size: cover; /* Ajusta la imagen para cubrir toda la pantalla */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-attachment: fixed; /* Fija la imagen de fondo para que no se desplace con el contenido */
+}
